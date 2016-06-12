@@ -72,7 +72,7 @@ def check_md5():
     except Exception as e:
         print e
     try:
-        insert_md5='insert '
+        insert_md5='insert into MD5 VALUES '
 
 if __name__=="__main__":
      check_md5()
