@@ -130,6 +130,14 @@ def db_refine():
     logging.info('copy %s '% watcherlab_MD5_file)
     shutil.copy(other_md5_file, refine_path)
     logging.info('copy %s' % other_md5_file)
+    
+    
+    result_path=os.path.join(os.getcwd(),'result')
+    if os.path.exists(result_path):
+        pass
+    else:
+        os.makedirs(result_path)
+    os.system('cat %s/*md5 |sort|uniq -u >%s/md5_refine_result.md5'%(refine_path,result_path))
 
 def check_md5():
     '''数据库检查更新'''
@@ -137,25 +145,26 @@ def check_md5():
                          charset='utf8')
     cursor = db.cursor()
     try:
-        version=time.strftime('%Y%m%d', time.localtime(time.time()))
+        
 
         select_sql='select md5 from MD5 into outfile "/var/lib/mysql-files/md5_all_%s"' % version
         print select_sql
-        exit()
         cursor.execute(select_sql)
-        md5s = cursor.fetchall()
+        
         cursor.close()
         db.close()
         list_md5s = [list_md5[0] for list_md5 in md5s]
     except Exception as e:
         print e
-    
+    os.system('cp /var/lib/mysql-files/md5_all_%s /po'% version)
+    os.system('rm /var/lib/mysql-files/md5_all_%s'% version)
     insert_md5='insert into MD5 VALUES '
    
     
 
 if __name__ =="__main__":
     init_logging(debug=True)
+    version=time.strftime('%Y%m%d', time.localtime(time.time()))
     malshare()
     virusshare()
     watchlab_feed()
