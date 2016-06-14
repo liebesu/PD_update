@@ -3,6 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/PD_update.iml" filepath="$PROJECT_DIR$/.idea/PD_update.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Virus_Class_for_privatekey/.idea/Virus_Class_for_privatekey.iml" filepath="$PROJECT_DIR$/../Virus_Class_for_privatekey/.idea/Virus_Class_for_privatekey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Virustotal_Crawler/.idea/Virustotal_Crawler.iml" filepath="$PROJECT_DIR$/../Virustotal_Crawler/.idea/Virustotal_Crawler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Virustotal_detail_info/.idea/Virustotal_detail_info.iml" filepath="$PROJECT_DIR$/../Virustotal_detail_info/.idea/Virustotal_detail_info.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../analyse/exportC/.idea/exportC.iml" filepath="$PROJECT_DIR$/../../analyse/exportC/.idea/exportC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../get_md5_file/.idea/get_md5_file.iml" filepath="$PROJECT_DIR$/../get_md5_file/.idea/get_md5_file.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../machine_learning_detection/.idea/machine_leaning_detection.iml" filepath="$PROJECT_DIR$/../machine_learning_detection/.idea/machine_leaning_detection.iml" />
     </modules>
   </component>
 </project>

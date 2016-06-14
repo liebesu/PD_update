@@ -2,7 +2,13 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 2.7.11 (C:\Python27\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="machine_leaning_detection" />
+    <orderEntry type="module" module-name="get_md5_file" />
+    <orderEntry type="module" module-name="Virus_Class_for_privatekey" />
+    <orderEntry type="module" module-name="exportC" />
+    <orderEntry type="module" module-name="Virustotal_Crawler" />
+    <orderEntry type="module" module-name="Virustotal_detail_info" />
   </component>
 </module>
