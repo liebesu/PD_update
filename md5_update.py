@@ -111,16 +111,15 @@ def watchlab_feed():
 
 def db_refine():
     '''数据清洗'''
-    print "111"
     refine_path=os.path.join(os.getcwd(),"refine")
-    if os._exists(refine_path):
+    if os.path.exists(refine_path):
         shutil.rmtree(refine_path)
         os.makedirs(refine_path)
     else:
         os.makedirs(refine_path)
-    shutil.copyfile(virusshare_MD5_path, refine_path)
-    shutil.copyfile(malshare_MD5_file, refine_path)
-    shutil.copyfile(watcherlab_MD5_file, refine_path)
+    shutil.copy(virusshare_MD5_path, refine_path)
+    shutil.copy(malshare_MD5_file, refine_path)
+    shutil.copy(watcherlab_MD5_file, refine_path)
     logging.info('copy %s %s %s'%(virusshare_MD5_path,malshare_MD5_file,watcherlab_MD5_file))
 
 def check_md5():
