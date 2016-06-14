@@ -138,6 +138,7 @@ def db_refine():
     else:
         os.makedirs(result_path)
     os.system('cat %s/*md5 |sort|uniq -u >%s/md5_refine_result.md5'%(refine_path,result_path))
+    os.system('sed -i '/'#'/d' 1.txt')
 
 def check_md5():
     '''数据库检查更新'''
