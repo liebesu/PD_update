@@ -137,9 +137,9 @@ def db_refine():
         pass
     else:
         os.makedirs(result_path)
-    os.system('cat %s/*md5 |sort|uniq -u >%s/md5_refine_result.md5'%(refine_path,result_path))
-    os.system('sed -i '/'#'/d' 1.txt')
-
+    os.system('cat %s/*.md5 |sort|uniq  >%s/md5_refine_result.md5'%(refine_path,result_path))
+    global md5_refine_result
+    md5_refine_result=os.path.join(result_path,'md5_refine_result.md5')
 def check_md5():
     '''数据库检查更新'''
     db = MySQLdb.connect(host='localhost', db='pd_update', user='root', passwd='polydata', port=3306,
@@ -148,7 +148,7 @@ def check_md5():
     try:
         
 
-        select_sql='select md5 from MD5 into outfile "/var/lib/mysql-files/md5_all_%s"' % version
+        select_sql='select md5 from MD5 into outfile "/var/lib/mysql-files/db_md5_all_%s"' % version
         print select_sql
         cursor.execute(select_sql)
         
@@ -157,8 +157,9 @@ def check_md5():
         list_md5s = [list_md5[0] for list_md5 in md5s]
     except Exception as e:
         print e
-    os.system('cp /var/lib/mysql-files/md5_all_%s /po'% version)
+    os.system('cp /var/lib/mysql-files/db_md5_all_%s /'% (version,original_path))
     os.system('rm /var/lib/mysql-files/md5_all_%s'% version)
+    os.system('cat ')
     insert_md5='insert into MD5 VALUES '
    
     
