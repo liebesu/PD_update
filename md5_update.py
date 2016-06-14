@@ -11,9 +11,6 @@ import requests
 from urlparse import urljoin
 __author__ = 'liebesu'
 
-global virusshare_MD5_path
-global malshare_MD5_file
-global watcherlab_MD5_file
 
 original_path='original'
 log_file=os.path.join(os.getcwd(),'log','update_md5.log')
@@ -53,6 +50,7 @@ def malshare():
                 logging.info("downloading %s"% str(relurl))
                 urllib.urlretrieve(relurl,os.path.join(filepath,link.get('href')))
     print "Malshare download finished"
+    global malshare_MD5_file
     malshare_MD5_file=os.path.join(Dir_file,'malsahre.md5')
     os.system('find . -name "malshare_fileList.*.txt" ! -name "*sha1*" ! -name "*all*" |xargs -i cat {} >%s' % malshare_MD5_file )
 def virusshare():
@@ -76,6 +74,7 @@ def virusshare():
             logging.info("virusshare downloading %s" % str(realurl))
             urllib.urlretrieve(realurl,filepath)
     print "virusshare download finished"
+    global virusshare_MD5_path
     virusshare_MD5_path=os.path.join(virusshare_path,'virusshare.md5')
     os.system('find . -name "VirusShare_*.md5" |xargs -i cat {} >%s' % virusshare_MD5_path )
 def watchlab_feed():
@@ -105,10 +104,16 @@ def watchlab_feed():
         
             os.system("tar zxvf " + tgz_path + " -C %s " % watcherlab_untaz_path)
     print "watcherlab download finished"
+    global watcherlab_MD5_file
     watcherlab_MD5_file=os.path.join(watcherlab_path,'watcherlab_blackmd5.md5')
     os.system('find . -name "watcherlab-md5*" | xargs -i cut -f 2 -d "," {}  >%s' % watcherlab_MD5_file)
 
-
+def other_md5():
+    
+    global other_md5_file
+    dir_other=os.path.join(original_path,'other')
+    other_md5_file=os.path.join(dir_other,'all_other.md5')
+    os.system('find %s -name "*.md5" ! -name "all_other.md5" | xargs -i cat {} >%s'% (dir_other,other_md5_file) )
 def db_refine():
     '''数据清洗'''
     refine_path=os.path.join(os.getcwd(),"refine")
@@ -118,9 +123,13 @@ def db_refine():
     else:
         os.makedirs(refine_path)
     shutil.copy(virusshare_MD5_path, refine_path)
+    logging.info('copy %s'% virusshare_MD5_path)
     shutil.copy(malshare_MD5_file, refine_path)
+    logging.info('copy %s'% malshare_MD5_file)
     shutil.copy(watcherlab_MD5_file, refine_path)
-    logging.info('copy %s %s %s'%(virusshare_MD5_path,malshare_MD5_file,watcherlab_MD5_file))
+    logging.info('copy %s '% watcherlab_MD5_file)
+    shutil.copy(other_md5_file, refine_path)
+    logging.info('copy %s' % other_md5_file)
 
 def check_md5():
     '''数据库检查更新'''
@@ -150,5 +159,6 @@ if __name__ =="__main__":
     malshare()
     virusshare()
     watchlab_feed()
+    other_md5()
     db_refine()
 
