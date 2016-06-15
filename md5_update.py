@@ -122,6 +122,11 @@ def db_refine():
         os.makedirs(refine_path)
     else:
         os.makedirs(refine_path)
+    
+    os.system("sed -i '/#/d' %s"%(malshare_MD5_file))
+    logging.info("sed  '/#/d' %s"%(malshare_MD5_file))
+    os.system("sed  -i '/#/d' %s"%(virusshare_MD5_path))
+    logging.info("sed -i '/#/d' %s"%(watcherlab_MD5_file))    
     shutil.copy(virusshare_MD5_path, refine_path)
     logging.info('copy %s'% virusshare_MD5_path)
     shutil.copy(malshare_MD5_file, refine_path)
@@ -131,35 +136,37 @@ def db_refine():
     shutil.copy(other_md5_file, refine_path)
     logging.info('copy %s' % other_md5_file)
     
-    
+    global result_path
     result_path=os.path.join(os.getcwd(),'result')
     if os.path.exists(result_path):
         pass
     else:
         os.makedirs(result_path)
-    os.system('cat %s/*.md5 |sort|uniq  >%s/md5_refine_result.md5'%(refine_path,result_path))
+    os.system('cat %s/*.md5 |uniq  >%s/md5_refine_result.md5'%(refine_path,result_path))
+    logging.info('create %s/md5_refine_result.md5'%(result_path))
     global md5_refine_result
     md5_refine_result=os.path.join(result_path,'md5_refine_result.md5')
 def check_md5():
     '''数据库检查更新'''
+    logging.info('use mysqldb')
     db = MySQLdb.connect(host='localhost', db='pd_update', user='root', passwd='polydata', port=3306,
                          charset='utf8')
     cursor = db.cursor()
     try:
-        
-
-        select_sql='select md5 from MD5 into outfile "/var/lib/mysql-files/db_md5_all_%s"' % version
-        print select_sql
-        cursor.execute(select_sql)
-        
+        select_sql='select md5 from MD5 into outfile "/var/lib/mysql-files/db_md5_all_%s.md5"' % version
+        cursor.execute(select_sql)  
         cursor.close()
         db.close()
-        list_md5s = [list_md5[0] for list_md5 in md5s]
     except Exception as e:
         print e
-    os.system('cp /var/lib/mysql-files/db_md5_all_%s /'% (version,original_path))
-    os.system('rm /var/lib/mysql-files/md5_all_%s'% version)
-    os.system('cat ')
+    logging.info("mysql outfile /var/lib/mysql-files/db_md5_all_%s.md5"% version)
+    os.system('cp /var/lib/mysql-files/db_md5_all_%s.md5 %s'% (version,result_path))
+    logging.info('cp /var/lib/mysql-files/db_md5_all_%s.md5 %s'% (version,result_path))
+    os.system('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
+    logging.info('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
+    os.system('cat %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
+    logging.info('cat %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
+    exit()
     insert_md5='insert into MD5 VALUES '
    
     
@@ -172,4 +179,4 @@ if __name__ =="__main__":
     watchlab_feed()
     other_md5()
     db_refine()
-
+    check_md5()
