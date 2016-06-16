@@ -164,10 +164,10 @@ def check_md5():
     logging.info('cp /var/lib/mysql-files/db_md5_all_%s.md5 %s'% (version,result_path))
     os.system('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
     logging.info('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
-    os.system('cat %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
+    os.system('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
     logging.info('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
     exit()
-    insert_md5='insert into MD5 VALUES '
+    insert_md5='insert into MD5 VALUES %s/new_%s'
    
     
 
