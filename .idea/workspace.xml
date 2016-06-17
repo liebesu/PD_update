@@ -104,12 +104,12 @@
       <file leaf-file-name="md5_update.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/md5_update.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3450">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="30">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="e#14#28#0" expanded="true" />
-                <marker date="1465881803218" expanded="true" signature="5358:5424" placeholder="select md5 f... MD5" />
-                <marker date="1465881803218" expanded="true" signature="5705:5727" placeholder="insert into MD5... " />
+                <marker date="1466059971204" expanded="true" signature="5980:6053" placeholder="select md5 f... MD5" />
+                <marker date="1466059971204" expanded="true" signature="6867:6899" placeholder="insert into MD5... " />
               </folding>
             </state>
           </provider>
@@ -178,8 +178,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -483,9 +483,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14818764" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14978679" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -521,6 +521,70 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../machine_learning_detection/watcherlab_feed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="35" selection-end-column="99" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../machine_learning_detection/low.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../machine_learning_detection/liushaojuan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../machine_learning_detection/count_peinfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../machine_learning_detection/xdowns_soft_downloader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="13" />
+          <folding>
+            <marker date="1461293368503" expanded="true" signature="4868:5041" placeholder="insert into lvmeng_soft_info... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/md5_update.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#28#0" expanded="true" />
+            <marker date="1466059971204" expanded="true" signature="5980:6053" placeholder="select md5 f... MD5" />
+            <marker date="1466059971204" expanded="true" signature="6867:6899" placeholder="insert into MD5... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../machine_learning_detection/malshare_daily.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../machine_learning_detection/baidu_soft_download.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -589,20 +653,13 @@
           <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
           <folding>
             <element signature="e#14#28#0" expanded="true" />
-            <marker date="1465881803218" expanded="true" signature="5358:5424" placeholder="select md5 f... MD5" />
-            <marker date="1465881803218" expanded="true" signature="5705:5727" placeholder="insert into MD5... " />
+            <marker date="1466059971204" expanded="true" signature="5980:6053" placeholder="select md5 f... MD5" />
+            <marker date="1466059971204" expanded="true" signature="6867:6899" placeholder="insert into MD5... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/huang.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/huang.py" />
     <entry file="file://$PROJECT_DIR$/../machine_learning_detection/malshare_daily.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -686,8 +743,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#14#28#0" expanded="true" />
-            <marker date="1465881803218" expanded="true" signature="5358:5424" placeholder="select md5 f... MD5" />
-            <marker date="1465881803218" expanded="true" signature="5705:5727" placeholder="insert into MD5... " />
+            <marker date="1466059971204" expanded="true" signature="5980:6053" placeholder="select md5 f... MD5" />
+            <marker date="1466059971204" expanded="true" signature="6867:6899" placeholder="insert into MD5... " />
           </folding>
         </state>
       </provider>
@@ -782,8 +839,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#14#28#0" expanded="true" />
-            <marker date="1465881803218" expanded="true" signature="5358:5424" placeholder="select md5 f... MD5" />
-            <marker date="1465881803218" expanded="true" signature="5705:5727" placeholder="insert into MD5... " />
+            <marker date="1466059971204" expanded="true" signature="5980:6053" placeholder="select md5 f... MD5" />
+            <marker date="1466059971204" expanded="true" signature="6867:6899" placeholder="insert into MD5... " />
           </folding>
         </state>
       </provider>
@@ -889,12 +946,12 @@
     <entry file="file://$PROJECT_DIR$/huang.py" />
     <entry file="file://$PROJECT_DIR$/md5_update.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3450">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="30">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="e#14#28#0" expanded="true" />
-            <marker date="1465881803218" expanded="true" signature="5358:5424" placeholder="select md5 f... MD5" />
-            <marker date="1465881803218" expanded="true" signature="5705:5727" placeholder="insert into MD5... " />
+            <marker date="1466059971204" expanded="true" signature="5980:6053" placeholder="select md5 f... MD5" />
+            <marker date="1466059971204" expanded="true" signature="6867:6899" placeholder="insert into MD5... " />
           </folding>
         </state>
       </provider>
