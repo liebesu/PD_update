@@ -171,7 +171,7 @@ def check_md5():
    
     
 
-if __name__ =="__main__":
+def md5_update():
     init_logging(debug=True)
     version=time.strftime('%Y%m%d', time.localtime(time.time()))
     malshare()
