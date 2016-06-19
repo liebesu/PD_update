@@ -169,9 +169,10 @@ def check_md5():
     f=open(new_md5_file)
     for line in f.readlines():
         
-        insert_md5='insert into MD5(md5) VALUES {0}'.format(line)
+        insert_md5="insert into MD5(md5) VALUES ('{0}')".format(line.replace("/r",""))
+        print insert_md5
         cursor.execute(insert_md5)
-        cursor.commit()
+        db.commit()
         cursor.close()
         db.close()        
    
