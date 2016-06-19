@@ -155,8 +155,7 @@ def check_md5():
     try:
         select_sql='select md5 from MD5 into outfile "/var/lib/mysql-files/db_md5_all_%s.md5"' % version
         cursor.execute(select_sql)  
-        cursor.close()
-        db.close()
+        
     except Exception as e:
         print e
     logging.info("mysql outfile /var/lib/mysql-files/db_md5_all_%s.md5"% version)
@@ -166,13 +165,21 @@ def check_md5():
     logging.info('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
     os.system('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
     logging.info('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
-    exit()
-    insert_md5='insert into MD5 VALUES %s/new_%s'
+    new_md5_file=os.path.join(result_path,"new_{0}".format(version))
+    f=open(new_md5_file)
+    for line in f.readlines():
+        
+        insert_md5='insert into MD5(md5) VALUES {0}'.format(line)
+        cursor.execute(insert_md5)
+        cursor.commit()
+        cursor.close()
+        db.close()        
    
     
 
 def md5_update():
     init_logging(debug=True)
+    global version
     version=time.strftime('%Y%m%d', time.localtime(time.time()))
     malshare()
     virusshare()
