@@ -14,7 +14,7 @@ __author__ = 'liebesu'
 
 original_path='original'
 log_file=os.path.join(os.getcwd(),'log','update_md5.log')
-if os.path.exists(log_file):
+if os.path.exists(os.path.dirname(log_file)):
     pass
 else:
     os.makedirs(os.path.dirname(log_file))
@@ -155,8 +155,7 @@ def check_md5():
     try:
         select_sql='select md5 from MD5 into outfile "/var/lib/mysql-files/db_md5_all_%s.md5"' % version
         cursor.execute(select_sql)  
-        cursor.close()
-        db.close()
+        
     except Exception as e:
         print e
     logging.info("mysql outfile /var/lib/mysql-files/db_md5_all_%s.md5"% version)
@@ -165,18 +164,36 @@ def check_md5():
     os.system('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
     logging.info('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
     os.system('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
-    logging.info('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
-    exit()
-    insert_md5='insert into MD5 VALUES %s/new_%s'
-   
+    logging.info('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s.MD5'%(result_path,version,md5_refine_result,result_path,version))
+    new_md5_file=os.path.join(result_path,"new_{0}.MD5".format(version))
     
+    f=open(new_md5_file)
+    for line in f.readlines():
+        if len(line)<30:
+            logging.info("today is no new data")
+        else:
+            insert_md5="insert into MD5(md5,time) VALUES ('{0}','{1}')".format(line.replace("/r",""),version)
+            logging.info('insert {0}'.format(line))
+            cursor.execute(insert_md5)
+            db.commit()
+    cursor.close()
+    db.close()        
+def create_info():
+    #shutil.copy(, dst)
+    
+    pass
 
-if __name__ =="__main__":
+def md5_update():
     init_logging(debug=True)
+    global version
     version=time.strftime('%Y%m%d', time.localtime(time.time()))
+    print "Collecting..."
     malshare()
     virusshare()
     watchlab_feed()
     other_md5()
+    print "Refining..."
     db_refine()
+    print "Checking data from database..."
     check_md5()
+    

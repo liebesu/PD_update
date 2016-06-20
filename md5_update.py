@@ -166,15 +166,18 @@ def check_md5():
     os.system('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
     logging.info('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
     new_md5_file=os.path.join(result_path,"new_{0}".format(version))
+    
     f=open(new_md5_file)
     for line in f.readlines():
-        
-        insert_md5="insert into MD5(md5) VALUES ('{0}')".format(line.replace("/r",""))
-        print insert_md5
-        cursor.execute(insert_md5)
-        db.commit()
-        cursor.close()
-        db.close()        
+        if len(line)<30:
+            logging.info("today is no new data")
+        else:
+            insert_md5="insert into MD5(md5,time) VALUES ('{0}','{1}')".format(line.replace("/r",""),version)
+            logging.info('insert {0}'.format(line))
+            cursor.execute(insert_md5)
+            db.commit()
+    cursor.close()
+    db.close()        
    
     
 
