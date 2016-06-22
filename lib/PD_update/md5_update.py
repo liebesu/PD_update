@@ -9,6 +9,7 @@ import logging
 from bs4 import BeautifulSoup
 import requests
 from urlparse import urljoin
+from lib.common.constants import PD_UPDATE_ROOT
 __author__ = 'liebesu'
 
 
