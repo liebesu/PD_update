@@ -122,7 +122,7 @@ def other_md5():
     os.system('find %s -name "*.md5" ! -name "all_other.md5" | xargs -i cat {} >%s'% (dir_other,other_md5_file) )
 def db_refine():
     '''数据清洗'''
-    refine_path=os.path.join(os.getcwd(),"refine")
+    refine_path=os.path.join(MD5_path,"refine")
     if os.path.exists(refine_path):
         shutil.rmtree(refine_path)
         os.makedirs(refine_path)
@@ -143,7 +143,7 @@ def db_refine():
     logging.info('copy %s' % other_md5_file)
     
     global result_path
-    result_path=os.path.join(os.getcwd(),'result')
+    result_path=os.path.join(MD5_path,'result')
     if os.path.exists(result_path):
         pass
     else:
