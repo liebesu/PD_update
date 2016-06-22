@@ -8,12 +8,17 @@ import time
 import logging
 from bs4 import BeautifulSoup
 import requests
-from urlparse import urljoin
-from lib.common.constants import PD_UPDATE_ROOT
+from urlparse import urljoin 
+from lib.common.constants import PD_UPDATE_ROOT,DATA_ROOT
 __author__ = 'liebesu'
 
+MD5_path=os.path.normpath(os.path.join(DATA_ROOT,"md5"))
+original_path=os.path.normpath(os.path.join(MD5_path,'original'))
+if os.path.exists(original_path):
+    pass
+else:
+    os.makedirs(original_path)
 
-original_path='original'
 log_file=os.path.join(os.getcwd(),'log','update_md5.log')
 if os.path.exists(os.path.dirname(log_file)):
     pass
