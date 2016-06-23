@@ -204,4 +204,5 @@ def md5_update():
     db_refine()
     print "Checking data from database..."
     check_md5()
+    print "MD5 update succe"
     
