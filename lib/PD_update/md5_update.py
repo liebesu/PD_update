@@ -169,7 +169,7 @@ def check_md5():
     logging.info('cp /var/lib/mysql-files/db_md5_all_%s.md5 %s'% (version,result_path))
     os.system('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
     logging.info('rm /var/lib/mysql-files/db_md5_all_%s.md5'% version)
-    os.system('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s'%(result_path,version,md5_refine_result,result_path,version))
+    os.system('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s.MD5'%(result_path,version,md5_refine_result,result_path,version))
     logging.info('sort %s/db_md5_all_%s.md5 %s  | uniq -u >%s/new_%s.MD5'%(result_path,version,md5_refine_result,result_path,version))
     new_md5_file=os.path.join(result_path,"new_{0}.MD5".format(version))
     
@@ -178,7 +178,9 @@ def check_md5():
         if len(line)<30:
             logging.info("today is no new data")
         else:
+            print line
             insert_md5="insert into MD5(md5,time) VALUES ('{0}','{1}')".format(line.replace("/r",""),version)
+            print insert_md5
             logging.info('insert {0}'.format(line))
             cursor.execute(insert_md5)
             db.commit()
