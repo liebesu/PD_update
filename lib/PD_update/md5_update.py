@@ -10,6 +10,8 @@ from bs4 import BeautifulSoup
 import requests
 from urlparse import urljoin 
 from lib.common.constants import PD_UPDATE_ROOT,DATA_ROOT
+from lib.PD_update.console import make_pack
+from lib.PD_update.push import push_packed
 __author__ = 'liebesu'
 
 MD5_path=os.path.normpath(os.path.join(DATA_ROOT,"md5"))
@@ -178,9 +180,7 @@ def check_md5():
         if len(line)<30:
             logging.info("today is no new data")
         else:
-            print line
             insert_md5="insert into MD5(md5,time) VALUES ('{0}','{1}')".format(line.replace("/r",""),version)
-            print insert_md5
             logging.info('insert {0}'.format(line))
             cursor.execute(insert_md5)
             db.commit()
@@ -204,5 +204,8 @@ def md5_update():
     db_refine()
     print "Checking data from database..."
     check_md5()
-    print "MD5 update succe"
-    
+    print "MD5 update succeed"
+    update_file=make_pack()
+    print "zip packing..."
+    push_packed(update_file)
+    print "push packed"

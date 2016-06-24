@@ -8,7 +8,8 @@ import os
 _current_dir = os.path.abspath(os.path.dirname(__file__))
 PD_UPDATE_ROOT = os.path.normpath(os.path.join(_current_dir, "..", ".."))
 DATA_ROOT=os.path.normpath(os.path.join(PD_UPDATE_ROOT,"data"))
-
+TMP_ROOT=os.path.normpath(os.path.join(PD_UPDATE_ROOT,"tmp"))
+PACKED_ROOT=os.path.normpath(os.path.join(PD_UPDATE_ROOT,"packed"))
 CUCKOO_VERSION = "0.1-dev"
 CUCKOO_GUEST_PORT = 8000
 CUCKOO_GUEST_INIT = 0x001
