@@ -88,30 +88,33 @@ def virusshare():
 def watchlab_feed():
     '''守望者实验室feed'''
     url = 'http://feed.watcherlab.com/'
-    r = requests.get(url)
-    soup = BeautifulSoup(r.content, "html.parser")
-    tgzs = soup.find_all(href=re.compile("watcherlab-\d"))  
-    for tgz in tgzs:
-        tgzurl = urljoin(url, tgz.get('href'))
-        watcherlab_path=os.path.join(original_path,"watcherlab")
-        watcherlab_untaz_path=os.path.join(watcherlab_path,"watcherlab_untaz")
-        if os.path.exists(watcherlab_untaz_path):
-            pass
-        else:
-            os.makedirs(watcherlab_untaz_path)          
-        if os.path.exists(watcherlab_path):
-            pass
-        else:
-            os.makedirs(watcherlab_path)
-        if os.path.exists(os.path.join(watcherlab_path, os.path.basename(tgzurl))):
-            pass
-        else:
-            tgz_path = os.path.join(watcherlab_path, os.path.basename(tgzurl))
-            logging.info("watchlab downloading %s" % str(tgzurl))
-            urllib.urlretrieve(tgzurl, tgz_path)
-        
-            os.system("tar zxvf " + tgz_path + " -C %s " % watcherlab_untaz_path)
-    print "watcherlab download finished"
+    try:
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, "html.parser")
+        tgzs = soup.find_all(href=re.compile("watcherlab-\d"))  
+        for tgz in tgzs:
+            tgzurl = urljoin(url, tgz.get('href'))
+            watcherlab_path=os.path.join(original_path,"watcherlab")
+            watcherlab_untaz_path=os.path.join(watcherlab_path,"watcherlab_untaz")
+            if os.path.exists(watcherlab_untaz_path):
+                pass
+            else:
+                os.makedirs(watcherlab_untaz_path)          
+            if os.path.exists(watcherlab_path):
+                pass
+            else:
+                os.makedirs(watcherlab_path)
+            if os.path.exists(os.path.join(watcherlab_path, os.path.basename(tgzurl))):
+                pass
+            else:
+                tgz_path = os.path.join(watcherlab_path, os.path.basename(tgzurl))
+                logging.info("watchlab downloading %s" % str(tgzurl))
+                urllib.urlretrieve(tgzurl, tgz_path)
+            
+                os.system("tar zxvf " + tgz_path + " -C %s " % watcherlab_untaz_path)
+        print "watcherlab download finished"
+    except:
+        pass
     global watcherlab_MD5_file
     watcherlab_MD5_file=os.path.join(watcherlab_path,'watcherlab_blackmd5.md5')
     os.system('find . -name "watcherlab-md5*" | xargs -i cut -f 2 -d "," {}  >%s' % watcherlab_MD5_file)
@@ -196,9 +199,17 @@ def md5_update():
     global version
     version=time.strftime('%Y%m%d', time.localtime(time.time()))
     print "Collecting..."
-    malshare()
-    virusshare()
+    try:    
+        malshare()
+    except:
+        pass
+    try:
+        virusshare()
+    except:
+        pass
+    
     watchlab_feed()
+    
     other_md5()
     print "Refining..."
     db_refine()
