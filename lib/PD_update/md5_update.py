@@ -12,6 +12,7 @@ from urlparse import urljoin
 from lib.common.constants import PD_UPDATE_ROOT,DATA_ROOT
 from lib.PD_update.console import make_pack
 from lib.PD_update.push import push_packed
+from lib.PD_update.create_info import create_info_file
 __author__ = 'liebesu'
 
 MD5_path=os.path.normpath(os.path.join(DATA_ROOT,"md5"))
@@ -216,6 +217,8 @@ def md5_update():
     print "Checking data from database..."
     check_md5()
     print "MD5 update succeed"
+    create_info_file('MD5Data')
+    print "create info file..."
     update_file=make_pack()
     print "zip packing..."
     push_packed(update_file)

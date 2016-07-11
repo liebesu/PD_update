@@ -3,6 +3,9 @@ import zipfile
 import shutil
 import time
 from lib.common.constants import PD_UPDATE_ROOT,TMP_ROOT
+def create_json():
+    json_path=os.path.normpath(os.path.join(PD_UPDATE_ROOT,"lib","install","info_model.json"))
+    a=open(json_path)
 def packed(Category,mode):
     packed_path=os.path.normpath(os.path.join(PD_UPDATE_ROOT,"packed"))
     if os.path.exists(packed_path):
