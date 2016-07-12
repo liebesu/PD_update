@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=/polyhawk/bin:$PATH
 virusshare_path=/polydata/content/malware/md5/VirusShare/
 cp md5/*.* /polydata/content/malware/md5/VirusShare/
 cd /polydata/content/malware/md5/VirusShare/
