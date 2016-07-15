@@ -19,7 +19,7 @@ def downloader(hash_md5):
         urllib.urlretrieve(r.url,hash_md5)
         print "downloading..."
 def get_hash(num):
-    db=MySQLdb.connect(host='192.168.25.62',db='virusname',user='root',passwd='polydata',port=3306,charset='utf8')
+    db=MySQLdb.connect(host='localhost',db='virusname',user='root',passwd='polydata',port=3306,charset='utf8')
     cursor=db.cursor()
     try:
         select_sql='select MD5 from malshare ORDER BY rand() limit 0,%d'%(num)
