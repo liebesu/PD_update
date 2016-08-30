@@ -10,5 +10,6 @@
     <orderEntry type="module" module-name="exportC" />
     <orderEntry type="module" module-name="Virustotal_Crawler" />
     <orderEntry type="module" module-name="Virustotal_detail_info" />
+    <orderEntry type="module" module-name="PokemonGo-Map-master" />
   </component>
 </module>

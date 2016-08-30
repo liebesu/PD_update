@@ -217,9 +217,7 @@ def md5_update():
     print "Checking data from database..."
     check_md5()
     print "MD5 update succeed"
-    create_info_file('MD5Data')
-    print "create info file..."
-    update_file=make_pack()
+    make_pack()
     print "zip packing..."
-    push_packed(update_file)
-    print "push packed"
+    
+    
