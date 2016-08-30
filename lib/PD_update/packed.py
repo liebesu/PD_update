@@ -33,11 +33,18 @@ def packed(Category,mode):
             os.system("rm -r %s"%(tmp_md5_path))
             md5_update_file=os.path.normpath(os.path.join(packed_path,"MD5Data_1.0.0.%s.zip"%(version)))                
         elif mode=='full':
+            tmp_md5_version_path=os.path.normpath(os.path.join(tmp_md5_path,"MD5Data_1.0.0.%s_full"% version))
+            tmp_md5_version_filepath=os.path.join(tmp_md5_version_path,"md5")
+            print tmp_md5_version_path,tmp_md5_version_filepath
+            if os.path.exists(tmp_md5_version_filepath):
+                pass
+            else:
+                os.makedirs(tmp_md5_version_filepath)            
             shutil.copyfile(os.path.join(PD_UPDATE_ROOT,"lib","install","install_allmd5.sh"), os.path.join(tmp_md5_version_path,"install.sh"))
             shutil.copyfile(os.path.join(PD_UPDATE_ROOT,"lib","install","info.json"),os.path.join(tmp_md5_version_path,"info.json"))
             shutil.copyfile(os.path.join(PD_UPDATE_ROOT,"data","md5","result","db_md5_all_{}.md5".format(version)),os.path.join(tmp_md5_version_filepath,"db_md5_all_{}.md5".format(version)))
             os.chdir(tmp_md5_path)        
-            os.system("zip -r %s/MD5Data_1.0.0.%s_full.zip MD5Data_1.0.0.%s"%(tmp_md5_path,version,version))
+            os.system("zip -r %s/MD5Data_1.0.0.%s_full.zip MD5Data_1.0.0.%s_full"%(tmp_md5_path,version,version))
             shutil.copy('%s/MD5Data_1.0.0.%s_full.zip'%(tmp_md5_path,version), packed_path)
             os.system("rm -r %s"%(tmp_md5_path))
             md5_update_file=os.path.normpath(os.path.join(packed_path,"MD5Data_1.0.0.%s_full.zip"%(version)))    

@@ -14,7 +14,7 @@ from lib.PD_update.console import make_pack
 from lib.PD_update.push import push_packed
 from lib.PD_update.create_info import create_info_file
 __author__ = 'liebesu'
-
+version=time.strftime('%Y%m%d', time.localtime(time.time()))
 MD5_path=os.path.normpath(os.path.join(DATA_ROOT,"md5"))
 original_path=os.path.normpath(os.path.join(MD5_path,'original'))
 if os.path.exists(original_path):
@@ -22,7 +22,7 @@ if os.path.exists(original_path):
 else:
     os.makedirs(original_path)
 
-log_file=os.path.join(os.getcwd(),'log','update_md5.log')
+log_file=os.path.join(os.getcwd(),'log','update_md5_%s.log'% version)
 if os.path.exists(os.path.dirname(log_file)):
     pass
 else:
