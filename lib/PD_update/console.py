@@ -6,7 +6,7 @@ from lib.PD_update.push import push_packed
 def make_pack():
     week=datetime.now().weekday()
     print "make_pack"
-    if week==1:
+    if week==4:
         #周五增量和全量
         #先增量
         create_info_file('MD5Data',"increment")
@@ -20,6 +20,7 @@ def make_pack():
         print "push packed",update_file        
     else:
         #除了周五 增量
+        create_info_file('MD5Data',"increment")
         update_file=packed('md5','increment')
         push_packed(update_file)
         print "push packed",update_file

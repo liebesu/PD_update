@@ -11,7 +11,7 @@ def call_to_process_pkgs(pkg_names_str_zip):
     """调用远程方法处理新生成的升级包
     """
     try:
-        server = ServerProxy("http://192.168.25.21:8089")
+        server = ServerProxy("http://192.168.25.20:8089")
         result = server.deal_with_upgpkgs(pkg_names_str_zip)
 
         if not result:
