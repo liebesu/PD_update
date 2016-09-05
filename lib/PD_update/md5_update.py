@@ -13,6 +13,7 @@ from lib.common.constants import PD_UPDATE_ROOT,DATA_ROOT
 from lib.PD_update.console import make_pack
 from lib.PD_update.push import push_packed
 from lib.PD_update.create_info import create_info_file
+from lib.common.readconf import read_conf
 __author__ = 'liebesu'
 version=time.strftime('%Y%m%d', time.localtime(time.time()))
 MD5_path=os.path.normpath(os.path.join(DATA_ROOT,"md5"))
@@ -189,7 +190,24 @@ def check_md5():
             cursor.execute(insert_md5)
             db.commit()
     cursor.close()
-    db.close()        
+    db.close()
+def new_check_md5():
+    '''数据库检查更新'''
+    initial_time=read_conf()
+    logging.info('use mysqldb')
+    db = MySQLdb.connect(host='localhost', db='pd_update', user='root', passwd='polydata', port=3306,
+                         charset='utf8')
+    cursor = db.cursor()
+    try:
+        select_sql='select md5 from MD5 where Time >%s into outfile "/var/lib/mysql-files/db_md5_new_all_%s.md5"' % (initial_time,version)
+        cursor.execute(select_sql)  
+        
+    except Exception as e:
+        print e
+    logging.info("mysql outfile /var/lib/mysql-files/db_md5_new_all_%s.md5"% version)
+    os.system('cp /var/lib/mysql-files/db_md5_new_all_%s.md5 %s'% (version,result_path))    
+    cursor.close()
+    db.close()    
 def create_info():
     #shutil.copy(, dst)
     
@@ -216,6 +234,7 @@ def md5_update():
     db_refine()
     print "Checking data from database..."
     check_md5()
+    new_check_md5()
     print "MD5 update succeed"
     make_pack()
     print "zip packing..."

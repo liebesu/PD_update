@@ -3,6 +3,7 @@ import os
 import json
 import time
 from lib.common.constants import PD_UPDATE_ROOT
+from lib.common.readconf import read_conf
 def create_info_file(target,para):
     if target=='AVEngineDB':
         ID="3001"
@@ -53,11 +54,11 @@ def create_info_file(target,para):
         type="shell"
         IsVisible="0"
     
-    
+    initial_time=read_conf()
     version=time.strftime('%Y%m%d', time.localtime(time.time()))
     yest_version=time.strftime('%Y%m%d', time.localtime(time.time()-24*60*60))
     if para=="full":
-        content='{"ProductId": '+ID+',"ProductName": {"en":"'+target+'","ch": "'+chtarget+'"},"ProductType": "Client","ProductInfo": {"langCode": "CN_ZH","OEM": "","description": ""},"PlatformInfo": {"os": "Linux","vender": "Ubuntu","architecture": "X86","version": "14.04"},"IsVisible": '+IsVisible+',"UpdatePaths": {"from": {"minimum": "1.0.0.20151202","maximum": "1.0.0.'+yest_version+'"},"to": "1.0.0.'+version+'","required": [ ]},"InstallInfo": {"version": "1.0.0.'+version+'","path": "install.'+suffix+'","type": "'+type+'"}}'
+        content='{"ProductId": '+ID+',"ProductName": {"en":"'+target+'","ch": "'+chtarget+'"},"ProductType": "Client","ProductInfo": {"langCode": "CN_ZH","OEM": "","description": ""},"PlatformInfo": {"os": "Linux","vender": "Ubuntu","architecture": "X86","version": "14.04"},"IsVisible": '+IsVisible+',"UpdatePaths": {"from": {"minimum": "1.0.0.'+initial_time+'","maximum": "1.0.0.'+yest_version+'"},"to": "1.0.0.'+version+'","required": [ ]},"InstallInfo": {"version": "1.0.0.'+version+'","path": "install.'+suffix+'","type": "'+type+'"}}'
     elif para=="increment":
         content='{"ProductId": '+ID+',"ProductName": {"en":"'+target+'","ch": "'+chtarget+'"},"ProductType": "Client","ProductInfo": {"langCode": "CN_ZH","OEM": "","description": ""},"PlatformInfo": {"os": "Linux","vender": "Ubuntu","architecture": "X86","version": "14.04"},"IsVisible": '+IsVisible+',"UpdatePaths": {"from": {"minimum": "1.0.0.'+yest_version+'","maximum": "1.0.0.'+yest_version+'"},"to": "1.0.0.'+version+'","required": [ ]},"InstallInfo": {"version": "1.0.0.'+version+'","path": "install.'+suffix+'","type": "'+type+'"}}'
     info_json_path=os.path.join(PD_UPDATE_ROOT,"lib","install","info.json")
